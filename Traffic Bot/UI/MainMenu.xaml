@@ -1,0 +1,631 @@
+﻿<Page x:Class="Traffic_Bot.UI.MainMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Traffic_Bot.UI"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainMenu">
+
+    <Grid>
+  
+        <!-- File Menu -->
+        <Menu IsMainMenu="True">
+            <MenuItem Header="_File">
+                <MenuItem Header="Settings" Click="OpenSettings_Click">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Settings" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Exit" Click="ExitApplication_Click">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ExitRun" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="_Help">
+                <MenuItem Header="Credits" Click="OpenCredits_Click">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Medal" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <!-- End File Menu -->
+
+        <!-- Transitioner -->
+        <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
+           
+            <!-- SLIDE ONE -->
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                
+                <!-- Welcome page Grid -->
+                <Grid Margin="0,50,0,0">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="498" />
+                            <ColumnDefinition Width="800" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="500" />
+                            <RowDefinition Height="300" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Bot Image Container -->
+                        <Image Height="400" Width="400" Source="pack://siteoforigin:,,,/Resources/web_bot.png"></Image>
+
+                        <!-- Welcome Title -->
+                        <StackPanel Grid.Column="1" Margin="0 120 8 0">
+                            <TextBlock FontWeight="Bold" FontSize="32" Foreground="#182132">Welcome to T-Bot</TextBlock>
+                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" FontSize="14" FontStyle="Italic"> Enter a website URL and the number of hits you want to send!</TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="-200, 200, 8, 0">
+
+
+                            <!-- URL Textbox -->
+                            <TextBox Grid.Column="1" Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" VerticalAlignment="Top" AcceptsReturn="False" TextWrapping="Wrap" MaxWidth="500" materialDesign:HintAssist.Hint="Website URL" Name="WebsiteUrlTextbox" TextChanged="WebsiteUrl_TextChanged" />
+
+                            <!-- URL Validator -->
+                            <materialDesign:PackIcon Name="URLValidator" Margin="195, -50, 0 ,0" Foreground="Red" Height="40" Width="40" Kind="Error" />
+
+                            <!-- Hits Textbox -->
+                            <TextBox Grid.Column="1" Name="HitsTextbox" TextChanged="HitsTextbox_TextChanged" Margin="-380, 10, 0, 0" Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" VerticalAlignment="Top" AcceptsReturn="False" TextWrapping="Wrap" MaxWidth="120" materialDesign:HintAssist.Hint="Number of Hits"/>
+
+                            <!-- Hits Validator -->
+                            <materialDesign:PackIcon Name="HitsValidator" Margin="195, -50, 0 ,0" Foreground="Red" Height="40" Width="40" Kind="Error" />
+
+                        </StackPanel>
+
+                        <!-- Next Button -->
+                        <Button Name="PageOneNextButton" Grid.Column="1" Margin="270,400,0,0" Width="150" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" IsEnabled="false">Next</Button>
+
+                    </Grid>
+
+                </Grid>
+                <!-- End Welcome Page -->
+                      
+            </materialDesign:TransitionerSlide>
+            <!-- END SLIDE ONE -->
+
+            <!-- SLIDE TWO : USER AGENTS -->
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+
+                <!-- Setup Page Grid -->
+                <Grid Margin="0,50,0,0">
+
+                    <!-- User Agent Toolbar -->
+                    <ToolBarTray IsLocked="True">
+                        <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+
+                            <!-- Go back button : Goes back to SLIDE 1 -->
+                            <Button ToolTip="Go Back" IsEnabled="True" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
+                                <materialDesign:PackIcon Kind="ArrowBack" />
+                            </Button>
+
+                            <!-- Seperator -->
+                            <Separator/>
+
+                            <!-- Add user agent button : Opens the add user agent dialog -->
+                            <Button ToolTip="Add User Agent" IsEnabled="True" Click="AddUserAgent_Click">
+                                <materialDesign:PackIcon Kind="Add" />
+                            </Button>
+
+                            <!-- Remove user agent button : removes the selected user agent -->
+                            <Button ToolTip="Remove selected user agent" Name="RemoveUserAgentButton" IsEnabled="False" Click="RemoveUserAgent_Click">
+                                <materialDesign:PackIcon Kind="RemoveCircle" />
+                            </Button>
+
+                            <!-- Seperator -->
+                            <Separator/>
+
+                            <!-- Reloads user agents button : reloads the user agents from file -->
+                            <Button ToolTip="Reload User Agents" IsEnabled="True" Click="ReloadUserAgents_Click">
+                                <materialDesign:PackIcon Kind="Reload" />
+                            </Button>
+
+                            <!-- Seperator -->
+                            <Separator/>
+
+                            <!-- The number of user agents selected -->
+                            <TextBlock Name="UserAgentCountLabel" Margin="10,20,0,0" FontStyle="Italic">10 User Agents Selected</TextBlock>
+
+                        </ToolBar>
+                    </ToolBarTray>
+                    <!-- End User Agent Toolbar -->
+
+                    <!-- User Agent Next Button -->
+                    <Button Width="80" Name="UserAgentNextButton" IsEnabled="false" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Content="Next" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"></Button>
+
+                    <!-- User Agent Data Grid -->
+                    <DataGrid Margin="0,55,0,0" SelectedCellsChanged="UserAgentsDataGrid_SelectedCellsChanged"  Name="UserAgentsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" CanUserDeleteRows="False" CanUserSortColumns="True" CanUserReorderColumns="False">
+                        <DataGrid.Columns>
+                            <!-- User agent enabled column -->
+                            <DataGridTemplateColumn Header="Enabled?" Width="85">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="chkName" IsChecked="{Binding Path=Enabled}" Click="OnUserAgentCheck" HorizontalAlignment="Center">
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!-- User agent text column -->
+                            <DataGridTextColumn IsReadOnly="True" Header="User Agent" Binding="{Binding Path=Agent}" Width="1080"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+
+            </materialDesign:TransitionerSlide>
+            <!-- END SLIDE TWO -->
+
+            <!-- SLIDE THREE : REFERERS -->
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+
+                <!-- Setup Page Grid -->
+                <Grid Margin="0,50,0,0">
+
+                    <!-- Referers Toolbar -->
+                    <ToolBarTray IsLocked="True">
+                        <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+
+                            <!-- Go Back Button : Returns to SLIDE 2 -->
+                            <Button ToolTip="Go Back" IsEnabled="True" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
+                                <materialDesign:PackIcon Kind="ArrowBack" />
+                            </Button>
+                            
+                            <!-- Seperator -->
+                            <Separator/>
+
+                            <!-- Add referer button : Opens the Add new Referrer host-->
+                            <Button ToolTip="Add Referer" IsEnabled="True" Click="NewReffererHost_Click">
+                                <materialDesign:PackIcon Kind="Add" />
+                            </Button>
+
+                            <!-- Removes Referrer button -->
+                            <Button ToolTip="Remove selected referer" Name="RemoveReferrerButton" IsEnabled="True" Click="RemoveReferral_Click">
+                                <materialDesign:PackIcon Kind="RemoveCircle" />
+                            </Button>
+
+                            <!-- Seperator -->
+                            <Separator/>
+
+                            <!-- Reload default referrs -->
+                            <Button ToolTip="Reload default referers" Click="ReloadReferrals_Click" IsEnabled="True">
+                                <materialDesign:PackIcon Kind="Reload" />
+                            </Button>
+
+                            <!-- Seperator -->
+                            <Separator/>
+                            
+                            <!-- Referrer count text -->
+                            <TextBlock Margin="10,20,0,0" Name="ReferrerCountLabel" FontStyle="Italic">10 Referers Selected</TextBlock>
+
+                        </ToolBar>
+                    </ToolBarTray>
+
+                    <!-- Referral Next Button -->
+                    <Button Width="80" Name="ReferralNextButton" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Content="Next" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"></Button>
+
+                    <!-- Referral Data Grid -->
+                    <DataGrid Margin="0,55,0,0" SelectedCellsChanged="ReferralsDataGrid_SelectedCellsChanged" Name="ReferrerDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" CanUserDeleteRows="False" CanUserSortColumns="True" CanUserReorderColumns="False">
+                        <DataGrid.Columns>
+                            <!-- Referral enabled column -->
+                            <DataGridTemplateColumn Header="Enabled?" Width="85">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="chkName" IsChecked="{Binding Path=Enabled}" Click="OnReferralCheck" HorizontalAlignment="Center">
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Referers" Binding="{Binding Refferer}" Width="800" IsReadOnly="True"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+                
+
+            </materialDesign:TransitionerSlide>
+            <!-- END SLIDE THREE -->
+
+            <!-- SLIDE FOUR : PROXIES -->
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+
+                <!-- Setup Page Grid -->
+                <Grid Margin="0,50,0,0">
+
+                    <!-- Proxy Toolbar -->
+                    <ToolBarTray IsLocked="True">
+                        <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+
+                            <!-- Go Back Button -->
+                            <Button ToolTip="Go Back" IsEnabled="True" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
+                                <materialDesign:PackIcon Kind="ArrowBack" />
+                            </Button>
+
+                            <!-- Seperator -->
+                            <Separator/>
+
+                            <!-- Add New Proxy Button -->
+                            <Button ToolTip="Add Proxy" IsEnabled="True" Click="NewProxyHost_Click">
+                                <materialDesign:PackIcon Kind="Add" />
+                            </Button>
+
+                            <!-- Remove Selected Proxy Button -->
+                            <Button ToolTip="Remove selected proxy" Name="RemoveProxyButton" Click="RemoveProxyButton_Click" IsEnabled="False">
+                                <materialDesign:PackIcon Kind="RemoveCircle" />
+                            </Button>
+
+                            <!-- Seperator -->
+                            <Separator/>
+
+                            <!-- Reload Default Proxies -->
+                            <Button ToolTip="Reload Proxies" Click="ReloadProxiesButton_Click" IsEnabled="True">
+                                <materialDesign:PackIcon Kind="Reload" />
+                            </Button>
+
+                            <!-- Seperator -->
+                            <Separator/>
+                            
+                            <!-- Scan Proxies -->
+                            <Button ToolTip="Scan Proxies" Click="ScanProxiesButton_Click" IsEnabled="True">
+                                <materialDesign:PackIcon Kind="Scanner" />
+                            </Button>
+
+                            <!-- Verify Proxies -->
+                            <Button ToolTip="Verify Proxies" Click="VerifyProxiesButton_Click" IsEnabled="True">
+                                <materialDesign:PackIcon Kind="Verified" />
+                            </Button>
+
+                            <!-- Seperator -->
+                            <Separator/>
+
+                            <!-- Proxy Count Label -->
+                            <TextBlock Name="ProxyCountLabel" Margin="10,20,0,0" FontStyle="Italic">10 Proxies Selected</TextBlock>
+
+                        </ToolBar>
+                    </ToolBarTray>
+
+                    <!-- Proxy Next Button -->
+                    <Button Name="ProxyNextButton" IsEnabled="False" Width="80" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Content="Next" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"></Button>
+
+                    <!-- Proxy Data Grid -->
+                    <DataGrid Margin="0,55,0,0" Name="ProxiesDataGrid" SelectedCellsChanged="ProxySelectedCell_Changed" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" CanUserDeleteRows="False" CanUserSortColumns="True" CanUserReorderColumns="False">
+                        <DataGrid.Columns>
+
+                            <!-- Proxy enabled column -->
+                            <DataGridTemplateColumn Header="Enabled?" Width="85"  >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="chkName" IsChecked="{Binding Path=Enabled}" Click="OnProxyCheck" HorizontalAlignment="Center">
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn IsReadOnly="True" Header="Proxy" Binding="{Binding Path=Prox}" Width="150"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="True" Header="Port" Binding="{Binding Path=Port}" Width="100"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="True" Header="Country" Binding="{Binding Path=Country}" Width="200"></DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+
+            </materialDesign:TransitionerSlide>
+            <!-- END SLIDE FOUR -->
+
+            <!-- SLIDE FIVE : WORKING -->
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+
+                <!-- Setup Page Grid -->
+                <Grid Margin="0,50,0,0">
+
+                    <!-- Working Toolbar -->
+                    <ToolBarTray IsLocked="True" Margin="0,5,0,0">
+                        <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+
+                            <Button ToolTip="Go Back" IsEnabled="True" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
+                                <materialDesign:PackIcon Kind="ArrowBack" />
+                            </Button>
+
+                            <Separator/>
+
+                            <Button ToolTip="Stop " IsEnabled="True" Click="TrafficBotStopButton_Click">
+                                <materialDesign:PackIcon Foreground="Red" Kind="Stop" />
+                            </Button>
+
+                            <Button ToolTip="Start" IsEnabled="True" Click="TrafficBotStartButton_Click">
+                                <materialDesign:PackIcon Foreground="Green" Kind="Play" />
+                            </Button>
+
+                            <Separator/>
+
+
+                        </ToolBar>
+                    </ToolBarTray>
+
+                    <!-- Progress bar -->
+                    <ProgressBar Name="TrafficProgress" Value="0" materialDesign:TransitionAssist.DisableTransitions="True" VerticalAlignment="Top" />
+
+
+            
+                        <Grid Background="White" Height="249" Width="320" Margin="0,62,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Border BorderBrush="DarkGray" BorderThickness="0,0.5,0.6,0">
+                                <WebBrowser Name="PreviewBrowser">
+                                    
+                                </WebBrowser>
+                            </Border>
+                        </Grid>
+                    
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,105,0,0">
+
+                       
+
+
+                        <!-- STAT BLOCK 1 -->
+                        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Width="200" Height="150" Margin="0,0,0,0" Padding="20">
+
+                            <Grid>
+                                
+                                <!-- Total Hits Label -->
+                                <TextBlock FontWeight="Bold" Margin="0,-4,0,0">Total Hits</TextBlock>
+
+                                <!-- TOTAL HITS GAUGE -->
+                                <lvc:Gauge Name="HitsGauge" Margin="5" From="0" To="1000" Value="109"/>
+
+                            </Grid>
+
+                        </materialDesign:Card>
+                        <!-- END STAT BLOCK 1 -->
+
+                        <!-- STAT BLOCK 2 -->
+                        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Padding="20" Width="200" Height="150" Margin="20,0,0,0">
+
+                            <Grid>
+
+                                <!-- Speed and Avg time per hit Label -->
+                                <TextBlock FontWeight="Bold" Margin="0,-4,0,0" ToolTip="This is the average speed per request">Average Speed</TextBlock>
+
+                                <!-- Speed Text -->
+                                <TextBlock FontSize="30" Margin="0,35,0,0">12.25 Mb/s</TextBlock>
+
+                            </Grid>
+                            
+                        </materialDesign:Card>
+                        <!-- END STAT BLOCK 2 -->
+
+
+                     
+
+                        
+                    </StackPanel>
+
+                    <!-- CONSOLE -->
+                    <TextBlock Name="ConsoleBlock" Background="Black" Foreground="White" Height="200" VerticalAlignment="Bottom">16:01 T-Bot => Awaiting user to start the process...</TextBlock>
+                    
+                </Grid>
+
+            </materialDesign:TransitionerSlide>
+            <!-- END SLIDE FIVE -->
+
+        </materialDesign:Transitioner>
+        <!-- End Transistioner -->
+
+        <!-- CREDIT HOST -->
+        <materialDesign:DialogHost HorizontalAlignment="Center" VerticalAlignment="Center" IsOpen="False" CloseOnClickAway="True" Width="1200" Height="700" Name="CreditHost">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Width="500" Height="400">
+
+                    <!-- Credits Title -->
+                    <TextBlock FontWeight="Bold" FontSize="22" Margin="20">Credits</TextBlock>
+
+                    <!-- Credit Info -->
+                    <TextBlock Margin="10,150,0,0" MaxWidth="405" TextWrapping="Wrap">With thanks to; Duple Studios - Mark Firman - Opaque Design - Jessica Black - Material Design and Epizy. If you feel you are due a credit, please contact info@markfirman.co.uk</TextBlock>
+
+                    <!-- Credit Links -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="50">
+
+                        <materialDesign:PackIcon Kind="GithubCircle" Background="Transparent" Height="50" Width="50" Cursor="Hand"/>
+                        <materialDesign:PackIcon Kind="LinkedinBox" Background="Transparent" Height="50" Width="50" Margin="20,0,0,0" Cursor="Hand"/>
+                        <materialDesign:PackIcon Kind="Web" Background="Transparent" Height="50" Width="50" Margin="20,0,0,0" Cursor="Hand"/>
+                        <materialDesign:PackIcon Kind="MaterialDesign" Background="Transparent" Height="50" Width="50" Margin="20,0,0,0" Cursor="Hand"/>
+
+                    </StackPanel>
+
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+        <!-- END CREDIT HOST -->
+        
+        <!-- ADD USER AGENT HOST -->
+        <materialDesign:DialogHost HorizontalAlignment="Center" VerticalAlignment="Center" IsOpen="False" CloseOnClickAway="True" Width="1200" Height="700" Name="UserAgentHost">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Width="500" Height="380">
+
+                    <!-- Form Holder -->
+                    <StackPanel Orientation="Vertical">
+
+                        <!-- New user agent header text -->
+                        <TextBlock Margin="20,20,0,0" FontWeight="Bold" FontSize="18">New User Agent</TextBlock>
+
+                        <!-- New user agent sub text -->
+                        <TextBlock Margin="20,0,0,0" FontStyle="Italic">The new user agent will be enabled by default.</TextBlock>
+                        
+                        <!-- New user agent textbox -->
+                        <TextBox Margin="0,50,0,0" Name="NewUserAgentTextbox" Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"  AcceptsReturn="True" TextWrapping="NoWrap" MaxWidth="400" MinHeight="200" materialDesign:HintAssist.Hint="User Agent" />
+
+                        <!-- Form Button Holder -->
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="20">
+                            <!-- Form cancel button -->
+                            <Button Click="CancelNewUserAgent_Click">Cancel</Button>
+                            <!-- Form save button -->
+                            <Button Margin="10,0,0,0" Click="SaveNewUserAgent_Click">Save</Button>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <!-- End form holder -->
+
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+        <!-- END USER AGENT HOST -->
+
+        <!-- NEW REFFERER HOST -->
+        <materialDesign:DialogHost HorizontalAlignment="Center" VerticalAlignment="Center" IsOpen="False" CloseOnClickAway="True" Width="1200" Height="700" Name="NewReferralHost">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Width="500" Height="380">
+
+                    <!-- Form Holder -->
+                    <StackPanel Orientation="Vertical">
+
+                        <!-- New Referral header text -->
+                        <TextBlock Margin="20,20,0,0" FontWeight="Bold" FontSize="18">New Referral</TextBlock>
+
+                        <!-- New Referral sub text -->
+                        <TextBlock Margin="20,0,0,0" FontStyle="Italic">The new referral will be enabled by default.</TextBlock>
+
+                        <!-- New Referral textbox -->
+                        <TextBox Margin="0,50,0,0" Name="NewReferralTextbox" Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"  AcceptsReturn="True" TextWrapping="NoWrap" MaxWidth="400" MinHeight="200" materialDesign:HintAssist.Hint="Referral" />
+
+                        <!-- Form Button Holder -->
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="20">
+                            <!-- Form cancel button -->
+                            <Button Click="CancelReferralHost_Click">Cancel</Button>
+                            <!-- Form save button -->
+                            <Button Margin="10,0,0,0" Click="SaveReferralHost_Click">Save</Button>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <!-- End form holder -->
+
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+        <!-- END NEW REFFERER HOST -->
+
+        <!-- NEW PROXY HOST -->
+        <materialDesign:DialogHost HorizontalAlignment="Center" VerticalAlignment="Center" IsOpen="False" CloseOnClickAway="True" Width="1200" Height="700" Name="NewProxyHost">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Width="500" Height="380">
+
+                    <!-- Form Holder -->
+                    <StackPanel Orientation="Vertical">
+
+                        <!-- New Proxy header text -->
+                        <TextBlock Margin="20,20,0,0" FontWeight="Bold" FontSize="18">New Proxy</TextBlock>
+
+                        <!-- New Proxy sub text -->
+                        <TextBlock Margin="20,0,0,0" FontStyle="Italic">The new proxy will be enabled by default.</TextBlock>
+
+                        <!-- New Proxy textbox -->
+                        <TextBox Margin="0,70,0,0" Name="NewProxyTextbox" Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"  AcceptsReturn="True" TextWrapping="NoWrap" MaxWidth="400" MinHeight="50" materialDesign:HintAssist.Hint="URL" />
+
+                        <!-- New Proxy Port textbox -->
+                        <TextBox Margin="0,20,0,0" Name="NewProxyPortTextbox" Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"  AcceptsReturn="True" TextWrapping="NoWrap" MaxWidth="400" MinHeight="50" materialDesign:HintAssist.Hint="Port" />
+
+
+                        <!-- Form Button Holder -->
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,60,20,0">
+                            <!-- Form cancel button -->
+                            <Button Click="NewProxyHostCancel_Click">Cancel</Button>
+                            <!-- Form save button -->
+                            <Button Margin="10,0,0,0" Click="NewProxyHostSave_Click">Save</Button>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <!-- End form holder -->
+
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+        <!-- END NEW PROXY HOST -->
+
+        <!-- SETTINGS HOST -->
+        <materialDesign:DialogHost HorizontalAlignment="Center" VerticalAlignment="Center" IsOpen="False" CloseOnClickAway="True" Width="1200" Height="700" Name="SettingsHost">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Width="800" Height="380">
+
+                    <!-- Form Holder -->
+                    <StackPanel Orientation="Vertical">
+
+
+                        <StackPanel>
+                            <Expander HorizontalAlignment="Stretch" Header="Visitor Behaviour" >
+                                <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                    <TextBlock Text="Screenshots" />
+                                    <TextBlock Opacity=".68" Text="Save browser snapshots?" TextWrapping="Wrap" />
+
+                                    <TextBlock Text="Screen Resolution" />
+                                    <TextBlock Opacity=".68" Text="A random resolution will be chosen at runtime" TextWrapping="Wrap" />
+
+                                    <TextBlock Text="Page Visit Simulation" />
+                                    <TextBlock Opacity=".68" Text="Minimum stay on page interval, seconds" TextWrapping="Wrap" />
+                                    <TextBlock Opacity=".68" Text="Maximum stay on page interval, seconds" TextWrapping="Wrap" />
+
+                                    <TextBlock Text="Locales" />
+                                    <TextBlock Opacity=".68" Text="Do you want to spoof locales?" TextWrapping="Wrap" />
+                                    
+                                </StackPanel>
+                            </Expander>
+
+                            <Expander HorizontalAlignment="Stretch" Header="Proxies">
+                                <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                    <TextBlock Text="Timeout Delay" />
+                                    <TextBlock Opacity=".68" Text="The proxy will auto time-out and move on after ...." TextWrapping="Wrap" />
+
+                                    <TextBlock Text="Maximum Retries" />
+                                    <TextBlock Opacity=".68" Text="The number of times a proxy will be retried, after which it will be disregarded for all future requests" TextWrapping="Wrap" />
+
+                                </StackPanel>
+                            </Expander>
+
+
+
+
+                        </StackPanel>
+
+
+
+                    </StackPanel>
+                    <!-- End form holder -->
+
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+        <!-- END SETTINGS HOST -->
+
+        <!-- VERIFY PROXY HOST -->
+        <materialDesign:DialogHost HorizontalAlignment="Center" VerticalAlignment="Center" IsOpen="False" CloseOnClickAway="False" Width="1200" Height="700" Name="VerifyProxyHost">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Width="350" Height="350">
+                    
+                    <!-- Verify Progress Bar  -->
+                    <ProgressBar Name="VerifyProxyProgressBar" Height="200" Width="200" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" IsIndeterminate="True" />
+
+                    <!-- Verify Textblock -->
+                    <TextBlock Name="VerifyProxyLabel" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontWeight="Bold" FontSize="16" MaxWidth="120" TextAlignment="Center">Verifying Proxy 1 of 302</TextBlock>
+                
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+        <!-- END VERIFY PROXY HOST -->
+
+        <!-- SNACKBAR -->
+        <materialDesign:Snackbar Name="MessageQueue">
+            <materialDesign:SnackbarMessage FontSize="22" MinWidth="800" Margin="0,0,0,0" Content="[MESSAGE]" />
+        </materialDesign:Snackbar>
+        <!-- END SNACKBAR -->
+
+    </Grid>
+</Page>

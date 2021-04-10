@@ -1,0 +1,58 @@
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\Traffic Bot.exe.config
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\Traffic Bot.exe
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\Traffic Bot.pdb
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\UI\Host.g.cs
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\App.g.cs
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\Traffic Bot_MarkupCompile.cache
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\Traffic Bot_MarkupCompile.lref
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\App.baml
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\UI\Host.baml
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\Traffic Bot.g.resources
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\Traffic_Bot.Properties.Resources.resources
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\Traffic Bot.csproj.GenerateResource.cache
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\Traffic Bot.csproj.CoreCompileInputs.cache
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\Traffic Bot.csproj.CopyComplete
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\Traffic Bot.exe
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\Traffic Bot.pdb
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\UI\MainMenu.g.cs
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\UI\MainMenu.baml
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\Resources\web_bot.png
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\LiveCharts.dll
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\LiveCharts.pdb
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\LiveCharts.xml
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\obj\Debug\Traffic Bot.csprojAssemblyReference.cache
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\Resources\useragents
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\Resources\referrals
+C:\Users\mfirman\source\repos\Traffic Bot\Traffic Bot\bin\Debug\Resources\proxies
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\Traffic Bot.csprojAssemblyReference.cache
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\UI\Host.g.cs
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\UI\MainMenu.g.cs
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\App.g.cs
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\Traffic Bot_MarkupCompile.cache
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\Traffic Bot_MarkupCompile.lref
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\Traffic Bot.exe
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\Traffic Bot.pdb
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\Resources\proxies
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\Resources\referrals
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\Resources\useragents
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\Resources\web_bot.png
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\Traffic Bot.exe.config
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\Traffic Bot.exe
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\Traffic Bot.pdb
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\LiveCharts.dll
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\LiveCharts.pdb
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\LiveCharts.xml
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\App.baml
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\UI\Host.baml
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\UI\MainMenu.baml
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\Traffic Bot.g.resources
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\Traffic_Bot.Properties.Resources.resources
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\Traffic Bot.csproj.GenerateResource.cache
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\Traffic Bot.csproj.CoreCompileInputs.cache
+C:\Users\Mark\Documents\GitHub\Traffic-Bot\Traffic Bot\obj\Debug\Traffic Bot.csproj.CopyComplete
